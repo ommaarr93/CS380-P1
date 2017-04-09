@@ -8,29 +8,30 @@ import java.util.*;
 
 public final class ChatClient {
 
-    public static void main(String[] args) throws Exception {
-        try (Socket socket = new Socket("codebank.xyz", 38001)) {
-            InputStream is = socket.getInputStream();
-            InputStreamReader isr = new InputStreamReader(is, "UTF-8");
-            BufferedReader br = new BufferedReader(isr);
+  public static void main(String[] args) throws Exception {
 
-            Scanner kb = new Scanner(System.in);
-            System.out.print("Enter your name: ");
-            String in = kb.nextLine();
+    try (Socket socket = new Socket("codebank.xyz", 38001)) {
 
-            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+      Reader reader = new Reader(socket);
+      Thread thread = new Thread(reader);
 
-            out.println(in);
+      thread.start();
 
-            while(true) {
-              System.out.print("");
-              System.out.print("Send Message: ");
-              //in = kb.nextLine();
+      Scanner kb = new Scanner(System.in);
+      System.out.print("Enter your name: ");
+      String in = kb.nextLine();
 
-            	   out.println(kb.nextLine());
+      PrintStream out = new PrintStream(socket.getOutputStream(), true, "UTF-8");
 
-            	System.out.println(br.readLine());
-            }
-        }
+      out.println(in);
+
+      while(true) {
+
+        in = kb.nextLine();
+        out.println(in);
+        Thread.sleep(500);
+
+      }
     }
+  }
 }
