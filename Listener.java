@@ -6,11 +6,11 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
-public class Reader implements Runnable {
+public class Listener implements Runnable {
 
   Socket socket;
 
-  public Reader (Socket socket) {
+  public Listener(Socket socket) {
     super();
     this.socket = socket;
   }

@@ -12,8 +12,8 @@ public final class ChatClient {
 
     try (Socket socket = new Socket("codebank.xyz", 38001)) {
 
-      Reader reader = new Reader(socket);
-      Thread thread = new Thread(reader);
+      Listener listener = new Listener(socket);
+      Thread thread = new Thread(listener);
 
       thread.start();
 
