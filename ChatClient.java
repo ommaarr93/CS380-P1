@@ -12,9 +12,12 @@ public final class ChatClient {
 
     try (Socket socket = new Socket("codebank.xyz", 38001)) {
 
+      // Creates Listener object for the new thread
       Listener listener = new Listener(socket);
+      // Creates thread object
       Thread thread = new Thread(listener);
 
+      // starts run() method from the Listener class
       thread.start();
 
       Scanner kb = new Scanner(System.in);

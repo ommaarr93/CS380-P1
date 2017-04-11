@@ -23,6 +23,7 @@ public class Listener implements Runnable {
 
       while (true) {
 
+        // Prints out anything that is sent to the BufferedReader
         System.out.println(br.readLine());
 
       }
