@@ -21,8 +21,6 @@ public class Listener implements Runnable {
       InputStreamReader isr = new InputStreamReader(is, "UTF-8");
       BufferedReader br = new BufferedReader(isr);
 
-      String timedOut = "Connection idle for 1 minute, closing connection.";
-
       while (true) {
 
         System.out.println(br.readLine());
@@ -30,7 +28,7 @@ public class Listener implements Runnable {
       }
     }
     catch (Exception e) {
-      System.out.print("You have been disconnected.");
+      System.out.print(e);
     }
   }
 }
